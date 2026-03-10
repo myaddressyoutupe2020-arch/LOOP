@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Our Works - LOOP | Real Projects, Real Impact</title>
+    
+    <!-- Poppins Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+    <!-- Header will be injected here -->
+    <div id="header-container"></div>
+
+    <main>
+
+        <!-- Works Hero / Intro -->
+        <section class="works-hero">
+            <div class="container">
+                <h1>Our Works</h1>
+                <p class="tagline">
+                    Real projects built by our community — from custom software to powerful marketing campaigns.
+                    <br>Every piece demonstrates skill, collaboration, and measurable results.
+                </p>
+            </div>
+        </section>
+
+        <!-- Portfolio Grid -->
+        <section class="works-gallery">
+            <div class="container">
+                <div class="grid-3">
+
+                    <!-- Project 1 -->
+                    <div class="work-card">
+                        <div class="work-image placeholder">E-Commerce Platform</div>
+                        <h3>E-Commerce Platform</h3>
+                        <p class="work-desc">
+                            Full-stack custom online store with payment gateway, inventory management, and responsive design.
+                        </p>
+                        <div class="work-tags">
+                            <span>Web Development</span>
+                            <span>React + Node.js</span>
+                            <span>+180% Sales Growth</span>
+                        </div>
+                        <a href="#" class="btn secondary small">View Case Study</a>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="work-card">
+                        <div class="work-image placeholder">Digital Marketing Campaign</div>
+                        <h3>Digital Marketing Campaign</h3>
+                        <p class="work-desc">
+                            SEO + Google Ads + Social Media strategy that tripled monthly leads for a local startup.
+                        </p>
+                        <div class="work-tags">
+                            <span>Digital Marketing</span>
+                            <span>SEO & PPC</span>
+                            <span>300% Lead Increase</span>
+                        </div>
+                        <a href="#" class="btn secondary small">View Case Study</a>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div class="work-card">
+                        <div class="work-image placeholder">Social Media Growth</div>
+                        <h3>Social Media Growth</h3>
+                        <p class="work-desc">
+                            Complete management & content strategy for a lifestyle brand — grew followers by 4× in 6 months.
+                        </p>
+                        <div class="work-tags">
+                            <span>Social Media</span>
+                            <span>Content Creation</span>
+                            <span>4× Follower Growth</span>
+                        </div>
+                        <a href="#" class="btn secondary small">View Case Study</a>
+                    </div>
+
+                    <!-- Project 4 -->
+                    <div class="work-card">
+                        <div class="work-image placeholder">Community Learning App</div>
+                        <h3>Community Learning App</h3>
+                        <p class="work-desc">
+                            Internal platform built by learners — task management, mentorship matching, project tracking.
+                        </p>
+                        <div class="work-tags">
+                            <span>Mobile App</span>
+                            <span>React Native</span>
+                            <span>Community Tool</span>
+                        </div>
+                        <a href="#" class="btn secondary small">View Case Study</a>
+                    </div>
+
+                    <!-- Project 5 -->
+                    <div class="work-card">
+                        <div class="work-image placeholder">Corporate Website Redesign</div>
+                        <h3>Corporate Website Redesign</h3>
+                        <p class="work-desc">
+                            Modern redesign with improved UX, faster load times, and integrated CRM for a service company.
+                        </p>
+                        <div class="work-tags">
+                            <span>UI/UX Design</span>
+                            <span>Next.js</span>
+                            <span>60% Bounce Rate ↓</span>
+                        </div>
+                        <a href="#" class="btn secondary small">View Case Study</a>
+                    </div>
+
+                    <!-- Project 6 -->
+                    <div class="work-card">
+                        <div class="work-image placeholder">Social Media Automation Tool</div>
+                        <h3>Social Media Automation Tool</h3>
+                        <p class="work-desc">
+                            Custom tool for scheduling, analytics, and AI-assisted content suggestions — used internally & by clients.
+                        </p>
+                        <div class="work-tags">
+                            <span>Automation</span>
+                            <span>Python + AI</span>
+                            <span>Time Saved: 70%</span>
+                        </div>
+                        <a href="#" class="btn secondary small">View Case Study</a>
+                    </div>
+
+                </div>
+
+                <!-- Pagination / More Projects CTA -->
+                <div class="center" style="margin-top: 60px;">
+                    <a href="contact.html" class="btn primary large">Want Similar Results? Let's Talk</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer will be injected here -->
+    <div id="footer-container"></div>
+
+    <script>
+        // Load header
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-container').innerHTML = data;
+            })
+            .catch(err => console.error('Error loading header:', err));
+
+        // Load footer
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-container').innerHTML = data;
+            })
+            .catch(err => console.error('Error loading footer:', err));
+    </script>
+
+    <script src="script.js"></script>
+</body>
+</html>

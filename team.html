@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Our Team - LOOP | Community-Driven IT & Digital Experts</title>
+    
+    <!-- Poppins Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+    <!-- Header injected here -->
+    <div id="header-container"></div>
+
+    <main>
+
+        <!-- Team Hero / Intro -->
+        <section class="team-hero">
+            <div class="container">
+                <h1>Our Team</h1>
+                <p class="tagline">
+                    Passionate learners, builders, mentors, and creators — working together to turn knowledge into real-world impact.
+                </p>
+            </div>
+        </section>
+
+        <!-- Team Members Grid -->
+        <section class="team-members">
+            <div class="container">
+                <div class="grid-3">
+
+                    <!-- Team Member 1 -->
+                    <div class="team-card">
+                        <div class="team-photo placeholder">Photo</div>
+                        <h3>Ravi Perera</h3>
+                        <p class="role">Founder & Lead Developer</p>
+                        <p class="bio">
+                            8+ years in full-stack development. Passionate about mentoring young talents and building scalable, user-focused solutions.
+                        </p>
+                        <div class="social-links">
+                            <a href="#" class="social-link">LinkedIn</a>
+                            <a href="#" class="social-link">GitHub</a>
+                        </div>
+                    </div>
+
+                    <!-- Team Member 2 -->
+                    <div class="team-card">
+                        <div class="team-photo placeholder">Photo</div>
+                        <h3>Nisha Fernando</h3>
+                        <p class="role">Digital Marketing Strategist</p>
+                        <p class="bio">
+                            Expert in SEO, content strategy & paid campaigns. Helps businesses grow while guiding community members in digital skills.
+                        </p>
+                        <div class="social-links">
+                            <a href="#" class="social-link">LinkedIn</a>
+                            <a href="#" class="social-link">Twitter/X</a>
+                        </div>
+                    </div>
+
+                    <!-- Team Member 3 -->
+                    <div class="team-card">
+                        <div class="team-photo placeholder">Photo</div>
+                        <h3>Kamal Jayasinghe</h3>
+                        <p class="role">Community & Project Mentor</p>
+                        <p class="bio">
+                            Guides learners from theory to live projects. Focuses on practical application, portfolio building, and career transitions.
+                        </p>
+                        <div class="social-links">
+                            <a href="#" class="social-link">LinkedIn</a>
+                            <a href="#" class="social-link">Instagram</a>
+                        </div>
+                    </div>
+
+                    <!-- Team Member 4 (example - add/remove as needed) -->
+                    <div class="team-card">
+                        <div class="team-photo placeholder">Photo</div>
+                        <h3>Sara Wijesinghe</h3>
+                        <p class="role">Social Media & Content Lead</p>
+                        <p class="bio">
+                            Creates engaging content and manages brand presence across platforms. Passionate about storytelling and community building.
+                        </p>
+                        <div class="social-links">
+                            <a href="#" class="social-link">LinkedIn</a>
+                            <a href="#" class="social-link">Behance</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Join / Apply CTA -->
+        <section class="team-cta">
+            <div class="container">
+                <h2>Want to Join Our Team or Community?</h2>
+                <p>
+                    We're always looking for passionate people who want to learn, build, and grow — whether as contributors, learners, or full-time members.
+                </p>
+                <div class="team-cta-buttons">
+                    <a href="contact.html" class="btn primary large">Apply / Get in Touch</a>
+                    <a href="#community" class="btn secondary large">Explore Community</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer injected here -->
+    <div id="footer-container"></div>
+
+    <script>
+        // Load header
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-container').innerHTML = data;
+            })
+            .catch(err => console.error('Error loading header:', err));
+
+        // Load footer
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-container').innerHTML = data;
+            })
+            .catch(err => console.error('Error loading footer:', err));
+    </script>
+
+    <script src="script.js"></script>
+</body>
+</html>

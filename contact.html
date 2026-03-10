@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Contact Us - LOOP | Get in Touch for IT, Marketing & Community</title>
+    
+    <!-- Poppins Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+    <!-- Header injected here -->
+    <div id="header-container"></div>
+
+    <main>
+
+        <!-- Contact Hero / Intro -->
+        <section class="contact-hero">
+            <div class="container">
+                <h1>Contact Us</h1>
+                <p class="tagline">
+                    Have a project in mind? Want to join the community? Or just want to say hi?<br>
+                    We're here to listen and help.
+                </p>
+            </div>
+        </section>
+
+        <!-- Contact Form + Info Section -->
+        <section class="contact-main">
+            <div class="container">
+                <div class="contact-grid">
+
+                    <!-- Left: Form -->
+                    <div class="contact-form-side">
+                        <h2>Send us a Message</h2>
+                        <form id="contactForm" class="contact-form">
+                            <div class="form-group">
+                                <label for="name">Full Name *</label>
+                                <input type="text" id="name" name="name" required placeholder="Your name">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" required placeholder="your@email.com">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="subject">Subject *</label>
+                                <input type="text" id="subject" name="subject" required placeholder="e.g. Project Inquiry, Join Community">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Your Message *</label>
+                                <textarea id="message" name="message" rows="6" required placeholder="Tell us how we can help..."></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn primary large">Send Message</button>
+                        </form>
+                        
+                        <p id="formStatus" class="form-status"></p>
+                    </div>
+
+                    <!-- Right: Contact Info + Map -->
+                    <div class="contact-info-side">
+                        <h2>Get in Touch</h2>
+                        
+                        <div class="contact-item">
+                            <span class="contact-icon">📧</span>
+                            <div>
+                                <h4>Email</h4>
+                                <p><a href="mailto:hello@loopcommunity.lk">hello@loopcommunity.lk</a></p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <span class="contact-icon">📞</span>
+                            <div>
+                                <h4>Phone</h4>
+                                <p>+94 11 123 4567<br>(Mon–Fri, 9 AM – 6 PM)</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <span class="contact-icon">📍</span>
+                            <div>
+                                <h4>Location</h4>
+                                <p>Colombo, Western Province<br>Sri Lanka</p>
+                            </div>
+                        </div>
+
+                        <!-- Map Placeholder (replace with real embed later) -->
+                        <div class="map-placeholder">
+                            <div class="map-inner placeholder">
+                                Google Maps / Location Here
+                            </div>
+                            <p class="map-note">We'll meet you where the ideas are! 🚀</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Final Encouragement -->
+        <section class="contact-cta">
+            <div class="container">
+                <h2>Let's Create Something Great Together</h2>
+                <p>Whether it's a business project, community collaboration, or career guidance — drop us a line.</p>
+                <a href="#contactForm" class="btn primary large">Message Us Now</a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer injected here -->
+    <div id="footer-container"></div>
+
+    <script>
+        // Load header
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-container').innerHTML = data;
+            })
+            .catch(err => console.error('Error loading header:', err));
+
+        // Load footer
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-container').innerHTML = data;
+            })
+            .catch(err => console.error('Error loading footer:', err));
+
+        // Simple form submission simulation (frontend only)
+        document.getElementById('contactForm')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const status = document.getElementById('formStatus');
+            status.style.color = '#00d4ff';
+            status.textContent = 'Thank you! Your message has been sent (simulated). We\'ll get back to you soon.';
+            this.reset();
+            setTimeout(() => { status.textContent = ''; }, 8000);
+        });
+    </script>
+
+    <script src="script.js"></script>
+</body>
+</html>

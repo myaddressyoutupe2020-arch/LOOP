@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Services - LOOP | IT Solutions, Digital Marketing & More</title>
+    
+    <!-- Poppins Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+    <!-- Header will be injected here -->
+    <div id="header-container"></div>
+
+    <main>
+
+        <!-- Services Hero / Intro -->
+        <section class="services-hero">
+            <div class="container">
+                <h1>Our Services</h1>
+                <p class="tagline">
+                    Comprehensive IT solutions, powerful digital marketing, and expert social media management —<br>
+                    delivered by a passionate community that turns learning into real impact.
+                </p>
+            </div>
+        </section>
+
+        <!-- Main Services Grid -->
+        <section class="services-detail">
+            <div class="container">
+                <div class="grid-3">
+                    
+                    <!-- Service 1: IT Software Solutions -->
+                    <div class="service-card">
+                        <div class="service-icon">💻</div>
+                        <h3>IT Software Solutions</h3>
+                        <p class="service-desc">
+                            We build custom software tailored to your business needs — from web & mobile applications to cloud infrastructure, ERP systems, and automation tools.
+                        </p>
+                        <ul class="service-features">
+                            <li>Web & Mobile App Development</li>
+                            <li>Custom Software & API Integration</li>
+                            <li>Cloud Migration & DevOps</li>
+                            <li>Maintenance & Support</li>
+                        </ul>
+                        <a href="contact.html" class="btn primary">Get a Quote</a>
+                    </div>
+
+                    <!-- Service 2: Digital Marketing -->
+                    <div class="service-card">
+                        <div class="service-icon">📈</div>
+                        <h3>Digital Marketing</h3>
+                        <p class="service-desc">
+                            Data-driven strategies to increase visibility, generate leads, and grow your revenue through SEO, paid ads, content marketing, and email campaigns.
+                        </p>
+                        <ul class="service-features">
+                            <li>Search Engine Optimization (SEO)</li>
+                            <li>Google Ads & Social Media Ads</li>
+                            <li>Content Strategy & Copywriting</li>
+                            <li>Analytics & Performance Tracking</li>
+                        </ul>
+                        <a href="contact.html" class="btn primary">Start Growing</a>
+                    </div>
+
+                    <!-- Service 3: Social Media Handling -->
+                    <div class="service-card">
+                        <div class="service-icon">🌐</div>
+                        <h3>Social Media Handling</h3>
+                        <p class="service-desc">
+                            Full management of your social presence — content creation, posting schedules, community engagement, and performance optimization across platforms.
+                        </p>
+                        <ul class="service-features">
+                            <li>Content Creation & Scheduling</li>
+                            <li>Community Management & Engagement</li>
+                            <li>Reels, Stories & Campaigns</li>
+                            <li>Growth & Analytics Reporting</li>
+                        </ul>
+                        <a href="contact.html" class="btn primary">Boost Your Presence</a>
+                    </div>
+
+                </div>
+
+                <!-- Extra Community Guidance Service -->
+                <div class="service-card highlight-card" style="margin: 60px auto 0; max-width: 780px;">
+                    <div class="service-icon">🤝</div>
+                    <h3>Community Guidance & Future Work Preparation</h3>
+                    <p class="service-desc">
+                        Our core mission: helping learners apply knowledge through real client projects, mentorship programs, workshops, and career guidance.
+                    </p>
+                    <ul class="service-features">
+                        <li>Live project participation</li>
+                        <li>1-on-1 mentorship from experts</li>
+                        <li>Portfolio building & skill certification</li>
+                        <li>Pathway to freelance & job opportunities</li>
+                    </ul>
+                    <a href="contact.html" class="btn primary large join-btn">Join as a Learner</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Banner at bottom of services page -->
+        <section class="services-cta">
+            <div class="container">
+                <h2>Ready to Transform Your Business or Career?</h2>
+                <p>Tell us about your goals — we'll create a custom plan that fits.</p>
+                <a href="contact.html" class="btn primary large">Get in Touch Today</a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer will be injected here -->
+    <div id="footer-container"></div>
+
+    <script>
+        // Load header
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-container').innerHTML = data;
+            })
+            .catch(err => console.error('Error loading header:', err));
+
+        // Load footer
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-container').innerHTML = data;
+            })
+            .catch(err => console.error('Error loading footer:', err));
+    </script>
+
+    <script src="script.js"></script>
+</body>
+</html>

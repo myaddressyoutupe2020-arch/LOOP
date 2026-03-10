@@ -1,0 +1,635 @@
+/* styles.css - LOOP Website (Full Professional Version - Updated 2026) */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+    line-height: 1.7;
+    color: #1a1a1a;
+    background-color: #ffffff;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ==================== Layout & Containers ==================== */
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+section {
+    padding: 100px 0;
+}
+
+@media (max-width: 768px) {
+    section {
+        padding: 70px 0;
+    }
+}
+
+/* ==================== Header ==================== */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: #000000;
+    color: #ffffff;
+    padding: 20px 0;
+    border-bottom: 1px solid #222;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo img {
+    height: 50px;
+    width: auto;
+}
+
+.logo h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -1px;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 32px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+nav a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.05rem;
+    transition: color 0.3s ease;
+}
+
+nav a:hover,
+nav a.active {
+    color: #00d4ff;
+}
+
+/* ==================== Buttons ==================== */
+.btn {
+    display: inline-block;
+    padding: 14px 32px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1.05rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.btn.primary {
+    background: #000000;
+    color: white;
+}
+
+.btn.primary:hover {
+    background: #111111;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+}
+
+.btn.secondary {
+    background: transparent;
+    color: #000000;
+    border: 2px solid #000000;
+}
+
+.btn.secondary:hover {
+    background: #000000;
+    color: white;
+}
+
+.btn.small {
+    padding: 10px 24px;
+    font-size: 0.95rem;
+}
+
+.btn.large {
+    padding: 18px 48px;
+    font-size: 1.2rem;
+}
+
+/* ==================== Hero ==================== */
+.hero {
+    background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.75)),
+                url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+    color: white;
+    text-align: center;
+    padding: 120px 0 80px;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+}
+
+.hero h2 {
+    font-size: 3.8rem;
+    margin-bottom: 0.5em;
+    letter-spacing: -1px;
+}
+
+.hero .tagline {
+    font-size: 1.35rem;
+    max-width: 720px;
+    margin: 0 auto 2rem;
+    opacity: 0.95;
+}
+
+.hero-cta {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* ==================== Grid & Cards ==================== */
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 32px;
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    gap: 40px;
+}
+
+.card, .work-card, .testimonial {
+    background: #f8f9fa;
+    border-radius: 16px;
+    padding: 32px 28px;
+    transition: all 0.35s ease;
+    border: 1px solid #eee;
+    text-align: center;
+}
+
+.card:hover, .work-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    border-color: #ddd;
+}
+
+/* ==================== Community Section ==================== */
+.community-section {
+    background: #000000;
+    color: #ffffff;
+    padding: 120px 0;
+    text-align: center;
+}
+
+.community-content {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.community-section h2 {
+    font-size: 3.2rem;
+    margin-bottom: 1.2rem;
+    letter-spacing: -1px;
+}
+
+.community-desc {
+    font-size: 1.25rem;
+    max-width: 760px;
+    margin: 0 auto 2.5rem;
+    opacity: 0.92;
+    line-height: 1.6;
+}
+
+.community-benefits {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 3rem;
+}
+
+.benefit-item {
+    max-width: 220px;
+}
+
+.benefit-icon {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.benefit-item p {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.join-btn {
+    background: linear-gradient(135deg, #000000, #1a1a1a);
+    border: 2px solid #00d4ff;
+    color: #00d4ff;
+}
+
+.join-btn:hover {
+    background: #00d4ff;
+    color: #000000;
+    transform: translateY(-4px);
+    box-shadow: 0 15px 35px rgba(0, 212, 255, 0.25);
+}
+
+/* ==================== Final CTA Section ==================== */
+.final-cta-section {
+    background: #f8f9fa;
+    padding: 100px 0;
+}
+
+.cta-box {
+    background: white;
+    border-radius: 20px;
+    padding: 60px 40px;
+    max-width: 960px;
+    margin: 0 auto;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    text-align: center;
+    border: 1px solid #e0e0e0;
+}
+
+.cta-box h2 {
+    font-size: 2.8rem;
+    margin-bottom: 1.5rem;
+    color: #000000;
+}
+
+.cta-text {
+    font-size: 1.25rem;
+    margin-bottom: 2.5rem;
+    color: #333333;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.cta-buttons .btn.large {
+    min-width: 220px;
+}
+
+/* ==================== Other Sections ==================== */
+.services-overview,
+.featured-works,
+.testimonials {
+    background: #fafafa;
+}
+
+.why-us {
+    background: #ffffff;
+}
+
+.center {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+/* ==================== Footer ==================== */
+footer {
+    background: #000000;
+    color: #e0e0e0;
+    padding: 80px 0 40px;
+    font-size: 0.95rem;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 40px 32px;
+    align-items: start;
+}
+
+.footer-col h4 {
+    color: #ffffff;
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 1.4rem;
+    letter-spacing: 0.5px;
+}
+
+.footer-col a {
+    color: #cccccc;
+    text-decoration: none;
+    line-height: 2;
+}
+
+.footer-col a:hover {
+    color: #00d4ff;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1.2rem;
+}
+
+.footer-logo img {
+    height: 42px;
+}
+
+.newsletter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 1.2rem 0;
+}
+
+.newsletter input {
+    flex: 1;
+    min-width: 200px;
+    padding: 12px 16px;
+    border: 1px solid #444;
+    border-radius: 50px 0 0 50px;
+    background: #111;
+    color: white;
+}
+
+.newsletter button.small {
+    border-radius: 0 50px 50px 0;
+}
+
+.footer-bottom {
+    border-top: 1px solid #222;
+    padding-top: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px 40px;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.social a {
+    color: #cccccc;
+    margin: 0 14px;
+}
+
+.social a:hover {
+    color: #00d4ff;
+}
+
+.legal a {
+    color: #aaaaaa;
+    margin: 0 8px;
+}
+
+.copyright {
+    width: 100%;
+    margin-top: 16px;
+    opacity: 0.8;
+}
+
+/* ==================== Responsive Adjustments ==================== */
+@media (max-width: 768px) {
+    .hero h2 { font-size: 2.8rem; }
+    .hero .tagline { font-size: 1.1rem; }
+    nav ul { gap: 20px; }
+    .community-section { padding: 80px 0; }
+    .community-section h2 { font-size: 2.6rem; }
+    .community-benefits { flex-direction: column; gap: 30px; }
+    .cta-box { padding: 40px 24px; }
+    .cta-box h2 { font-size: 2.4rem; }
+    .footer-bottom { flex-direction: column; gap: 24px; }
+}
+
+/* ──────────────────────────────────────────────────────────────── */
+/*                  ADDED STYLES FOR OTHER PAGES                    */
+/* ──────────────────────────────────────────────────────────────── */
+
+/* Common page hero styles (services, about, team, works, contact) */
+.services-hero,
+.about-hero,
+.team-hero,
+.works-hero,
+.contact-hero {
+    background: #000000;
+    color: white;
+    text-align: center;
+    padding: 140px 0 100px;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+}
+
+.services-hero h1,
+.about-hero h1,
+.team-hero h1,
+.works-hero h1,
+.contact-hero h1 {
+    font-size: 3.8rem;
+    margin-bottom: 1rem;
+}
+
+/* Service Cards (services.html) */
+.service-card {
+    background: white;
+    border-radius: 16px;
+    padding: 40px 32px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+    transition: all 0.35s ease;
+    text-align: center;
+    border: 1px solid #eee;
+}
+
+.service-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+}
+
+.service-icon {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+    display: block;
+}
+
+.service-desc {
+    font-size: 1.05rem;
+    margin: 1rem 0 1.8rem;
+    color: #444;
+    min-height: 80px;
+}
+
+.service-features {
+    list-style: none;
+    margin-bottom: 2rem;
+    text-align: left;
+    padding-left: 0;
+}
+
+.service-features li {
+    margin-bottom: 0.8rem;
+    position: relative;
+    padding-left: 24px;
+}
+
+.service-features li:before {
+    content: "✓";
+    color: #000;
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+/* Team Cards (team.html) */
+.team-card {
+    background: white;
+    border-radius: 16px;
+    padding: 40px 28px;
+    text-align: center;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+    transition: all 0.35s ease;
+    border: 1px solid #eee;
+}
+
+.team-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+}
+
+.team-photo.placeholder {
+    width: 160px;
+    height: 160px;
+    background: linear-gradient(135deg, #e0e0e0, #f0f0f0);
+    border-radius: 50%;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #777;
+    font-size: 1rem;
+}
+
+.role {
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.bio {
+    font-size: 1rem;
+    color: #444;
+    margin-bottom: 1.5rem;
+}
+
+.social-links a {
+    color: #000;
+    margin: 0 10px;
+    font-size: 0.95rem;
+}
+
+.social-links a:hover {
+    color: #00d4ff;
+}
+
+/* Portfolio / Works Cards (works.html) */
+.work-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+    transition: all 0.35s ease;
+    border: 1px solid #eee;
+}
+
+.work-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+}
+
+.work-image.placeholder {
+    height: 220px;
+    background: linear-gradient(135deg, #e0e0e0, #f0f0f0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #777;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.work-desc {
+    padding: 0 24px 16px;
+    font-size: 1rem;
+    color: #555;
+}
+
+.work-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 0 24px 20px;
+}
+
+.work-tags span {
+    background: #f0f0f0;
+    color: #333;
+    font-size: 0.8rem;
+    padding: 6px 12px;
+    border-radius: 20px;
+}
+
+/* Contact Page Styles */
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+}
+
+.form-group input,
+.form-group textarea {
+    padding: 14px 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: white;
+}
+
+.contact-item {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.contact-icon {
+    font-size: 1.8rem;
+}
+
+/* Responsive fixes for all pages */
+@media (max-width: 768px) {
+    .contact-grid,
+    .story-grid {
+        grid-template-columns: 1fr;
+    }
+}

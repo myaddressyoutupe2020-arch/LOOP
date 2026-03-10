@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>About Us - LOOP | Community-Driven IT & Digital Solutions</title>
+    
+    <!-- Poppins Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+    <!-- Header will be injected here -->
+    <div id="header-container"></div>
+
+    <main>
+
+        <!-- About Hero / Intro -->
+        <section class="about-hero">
+            <div class="container">
+                <h1>About LOOP</h1>
+                <p class="tagline">
+                    A community-first company built to bridge the gap between learning and real-world application.
+                </p>
+            </div>
+        </section>
+
+        <!-- Our Story -->
+        <section class="about-story">
+            <div class="container">
+                <div class="story-grid">
+                    <div class="story-text">
+                        <h2>Our Story</h2>
+                        <p>
+                            LOOP was born from a simple idea: most people learn skills but struggle to apply them in real projects. 
+                            We started as a small community of learners, developers, marketers, and creators who wanted to change that.
+                        </p>
+                        <p>
+                            What began as weekend hackathons and peer mentoring sessions quickly grew into a full-fledged company 
+                            that combines professional IT solutions, digital marketing services, and social media management — 
+                            all powered by a passionate community that learns by doing.
+                        </p>
+                    </div>
+                    <div class="story-image placeholder">
+                        <!-- You can replace this with a real image later -->
+                        Community working together
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mission & Vision -->
+        <section class="mission-vision">
+            <div class="container">
+                <div class="grid-2">
+                    <div class="mission-card">
+                        <h3>Our Mission</h3>
+                        <p>
+                            To empower individuals and businesses by providing high-quality IT & digital services 
+                            while creating real-world learning opportunities through community collaboration.
+                        </p>
+                    </div>
+                    <div class="vision-card">
+                        <h3>Our Vision</h3>
+                        <p>
+                            A world where learning never stops at theory — where every skill learned is immediately 
+                            applied, every project builds confidence, and every person has the chance to grow professionally.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Values -->
+        <section class="values-section">
+            <div class="container">
+                <h2>Our Core Values</h2>
+                <div class="grid-3">
+                    <div class="value-item">
+                        <span class="value-icon">🌱</span>
+                        <h3>Growth Mindset</h3>
+                        <p>Continuous learning and improvement — for ourselves and everyone we work with.</p>
+                    </div>
+                    <div class="value-item">
+                        <span class="value-icon">🤝</span>
+                        <h3>Community First</h3>
+                        <p>Collaboration over competition. We grow stronger together.</p>
+                    </div>
+                    <div class="value-item">
+                        <span class="value-icon">⚡</span>
+                        <h3>Real Impact</h3>
+                        <p>Everything we do must create measurable value — for clients and learners alike.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA at bottom -->
+        <section class="about-cta">
+            <div class="container">
+                <h2>Be Part of Something Meaningful</h2>
+                <p>Join a growing community that's turning knowledge into action.</p>
+                <div class="about-cta-buttons">
+                    <a href="contact.html" class="btn primary large">Get in Touch</a>
+                    <a href="#community" class="btn secondary large">Join the Community</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer will be injected here -->
+    <div id="footer-container"></div>
+
+    <script>
+        // Load header
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-container').innerHTML = data;
+            })
+            .catch(err => console.error('Error loading header:', err));
+
+        // Load footer
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-container').innerHTML = data;
+            })
+            .catch(err => console.error('Error loading footer:', err));
+    </script>
+
+    <script src="script.js"></script>
+</body>
+</html>
