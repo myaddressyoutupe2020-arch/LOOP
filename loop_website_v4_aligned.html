@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--bg:#080808;--white:#f5f0eb;--red:#e3190f;--red2:#ff2d20;--muted:#666360;--card:#111010;--border:#1e1c1a;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--white);font-family:'DM Sans',sans-serif;overflow-x:hidden;}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.1rem 4rem;border-bottom:1px solid var(--border);background:rgba(8,8,8,.93);backdrop-filter:blur(14px);transition:padding .3s;}
+nav.scrolled{padding:.8rem 4rem;}
+.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.45rem;letter-spacing:-1px;cursor:pointer;}
+.logo span{color:var(--red);}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.84rem;letter-spacing:.02em;transition:color .2s;cursor:pointer;}
+.nav-links a:hover,.nav-links a.active{color:var(--white);}
+.nav-cta{background:var(--red);color:var(--white);padding:.5rem 1.4rem;border-radius:100px;font-size:.82rem;font-weight:700;font-family:'Syne',sans-serif;cursor:pointer;border:none;transition:transform .2s,background .2s;}
+.nav-cta:hover{background:var(--red2);transform:scale(1.03);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;}
+.hamburger span{display:block;width:22px;height:2px;background:var(--white);transition:.3s;}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+.mobile-menu{display:none;position:fixed;inset:0;background:rgba(8,8,8,.98);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:2rem;}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--muted);text-decoration:none;transition:color .2s;}
+.mobile-menu a:hover{color:var(--white);}
+
+/* ── SHARED LAYOUT ── */
+.container{width:100%;max-width:1200px;margin:0 auto;padding:0 4rem;}
+section{padding:7rem 0;}
+
+/* ── HERO ── */
+#home{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:0;position:relative;overflow:hidden;}
+#home .container{display:flex;flex-direction:column;justify-content:center;min-height:100vh;padding-top:5rem;padding-bottom:6rem;}
+.hero-bg-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Syne',sans-serif;font-size:22vw;font-weight:800;color:rgba(227,25,15,.04);white-space:nowrap;pointer-events:none;letter-spacing:-8px;user-select:none;}
+.hero-tag{display:inline-flex;align-items:center;gap:.5rem;background:var(--card);border:1px solid var(--border);padding:.38rem 1rem;border-radius:100px;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:1.8rem;width:fit-content;opacity:0;animation:fadeUp .6s .2s forwards;}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--red);flex-shrink:0;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.3;transform:scale(.6);}}
+.hero-h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(3rem,7.5vw,7.5rem);line-height:.92;letter-spacing:-4px;max-width:860px;opacity:0;animation:fadeUp .7s .38s forwards;}
+.hero-h1 em{font-style:italic;font-family:'DM Sans',sans-serif;font-weight:300;color:var(--muted);}
+.red{color:var(--red);}
+.hero-oneliner{display:flex;align-items:center;gap:1rem;margin-top:1.8rem;max-width:600px;opacity:0;animation:fadeUp .7s .55s forwards;}
+.hero-oneliner-bar{width:36px;height:1px;background:var(--red);flex-shrink:0;}
+.hero-oneliner p{font-size:1rem;color:var(--muted);font-style:italic;font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.55;}
+.hero-actions{display:flex;align-items:center;gap:1rem;margin-top:2.5rem;opacity:0;animation:fadeUp .7s .7s forwards;}
+.btn-primary{background:var(--red);color:var(--white);padding:.82rem 2rem;border-radius:100px;font-weight:700;font-family:'Syne',sans-serif;font-size:.88rem;cursor:pointer;border:none;transition:transform .2s,background .2s;white-space:nowrap;}
+.btn-primary:hover{background:var(--red2);transform:scale(1.04);}
+.btn-ghost{border:1px solid var(--border);color:var(--muted);padding:.82rem 2rem;border-radius:100px;font-size:.88rem;cursor:pointer;background:transparent;transition:border-color .2s,color .2s;white-space:nowrap;}
+.btn-ghost:hover{border-color:var(--muted);color:var(--white);}
+.hero-strip{position:absolute;bottom:0;left:0;right:0;border-top:1px solid var(--border);opacity:0;animation:fadeIn 1s 1s forwards;}
+.hero-strip-inner{max-width:1200px;margin:0 auto;padding:1.2rem 4rem;display:flex;align-items:center;gap:0;}
+.hero-strip-stat{flex:1;text-align:center;}
+.hero-strip-stat .num{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;}
+.hero-strip-stat .lbl{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:.2rem;}
+.strip-div{width:1px;height:36px;background:var(--border);}
+.hero-scroll-btn{display:flex;flex-direction:column;align-items:center;gap:.4rem;color:var(--muted);font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;flex:1;text-align:center;}
+.scroll-line{width:1px;height:32px;background:linear-gradient(to bottom,transparent,var(--red));animation:scrollani 1.8s ease-in-out infinite;margin:0 auto;}
+@keyframes scrollani{0%{transform:scaleY(0);transform-origin:top;}50%{transform:scaleY(1);transform-origin:top;}51%{transform:scaleY(1);transform-origin:bottom;}100%{transform:scaleY(0);transform-origin:bottom;}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+
+/* ── MARQUEE ── */
+.marquee-wrap{overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:.9rem 0;background:var(--card);}
+.marquee-inner{display:flex;gap:3rem;animation:marquee 20s linear infinite;width:max-content;}
+@keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+.marquee-item{font-family:'Syne',sans-serif;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);white-space:nowrap;}
+.marquee-dot{color:var(--red);margin:0 1.5rem;}
+
+/* ── REVEAL ── */
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .65s,transform .65s;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* ── SECTION LABEL ── */
+.label{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--red);margin-bottom:.9rem;}
+
+/* ── ABOUT ── */
+#about .container{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start;}
+.about-left h2{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2.2rem,3.5vw,3.2rem);line-height:1.02;letter-spacing:-2px;margin-bottom:2.2rem;}
+.stats-row{display:flex;gap:0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.stat-item{flex:1;padding:1.4rem 0;text-align:center;border-right:1px solid var(--border);}
+.stat-item:last-child{border-right:none;}
+.stat-num{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--red);}
+.stat-lbl{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:.3rem;}
+.mv-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);margin-top:2rem;}
+.mv-card{background:var(--bg);padding:1.5rem;position:relative;}
+.mv-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--red);}
+.mv-card-label{font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--red);margin-bottom:.5rem;}
+.mv-card h3{font-family:'Syne',sans-serif;font-weight:700;font-size:.95rem;margin-bottom:.45rem;letter-spacing:-.2px;}
+.mv-card p{color:var(--muted);line-height:1.6;font-size:.84rem;}
+
+.story-block{margin-bottom:1.3rem;}
+.story-block p{color:var(--muted);line-height:1.85;font-size:.93rem;}
+.story-block p strong{color:var(--white);font-weight:400;}
+.story-quote{border-left:2px solid var(--red);padding-left:1.2rem;margin:1.8rem 0;}
+.story-quote p{color:var(--white);font-style:italic;font-family:'DM Sans',sans-serif;font-size:1rem;line-height:1.7;}
+
+/* ── SERVICES ── */
+#services{border-top:1px solid var(--border);}
+.section-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:2.5rem;}
+.section-title{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.8rem,3vw,2.6rem);letter-spacing:-1.5px;}
+.section-link{color:var(--muted);font-size:.83rem;text-decoration:none;border-bottom:1px solid var(--border);padding-bottom:2px;transition:color .2s,border-color .2s;cursor:pointer;}
+.section-link:hover{color:var(--white);border-color:var(--white);}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);}
+.service-card{background:var(--bg);padding:2.5rem;transition:background .3s;position:relative;overflow:hidden;}
+.service-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .4s;}
+.service-card:hover::after{transform:scaleX(1);}
+.service-card:hover{background:var(--card);}
+.service-num{font-family:'Syne',sans-serif;font-size:.68rem;color:var(--red);letter-spacing:.12em;margin-bottom:1.3rem;}
+.service-card h3{font-family:'Syne',sans-serif;font-weight:700;font-size:1.2rem;margin-bottom:.8rem;letter-spacing:-.4px;}
+.service-card p{color:var(--muted);font-size:.87rem;line-height:1.7;}
+.service-tag{display:inline-block;margin-top:1.2rem;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--red);border:1px solid rgba(227,25,15,.25);padding:.28rem .85rem;border-radius:100px;}
+
+/* ── TEAM ── */
+#team{border-top:1px solid var(--border);}
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;}
+.team-card{background:var(--card);border:1px solid var(--border);border-radius:1rem;padding:1.8rem;transition:border-color .3s,transform .3s;position:relative;overflow:hidden;}
+.team-card:hover{border-color:rgba(227,25,15,.3);transform:translateY(-4px);}
+.team-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .4s;}
+.team-card:hover::after{transform:scaleX(1);}
+.team-avatar{width:48px;height:48px;border-radius:50%;background:rgba(227,25,15,.1);border:1px solid rgba(227,25,15,.22);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:.8rem;font-weight:800;color:var(--red);margin-bottom:1rem;}
+.team-card h3{font-family:'Syne',sans-serif;font-weight:700;font-size:1.05rem;letter-spacing:-.3px;margin-bottom:.22rem;}
+.team-role{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-bottom:.75rem;}
+.team-card p{color:var(--muted);font-size:.84rem;line-height:1.65;}
+.team-tag{display:inline-block;margin-top:.85rem;font-size:.64rem;letter-spacing:.06em;text-transform:uppercase;background:rgba(227,25,15,.07);border:1px solid rgba(227,25,15,.12);color:var(--muted);padding:.22rem .65rem;border-radius:100px;}
+
+/* ── PROJECTS ── */
+#projects{border-top:1px solid var(--border);}
+.project-card{border:1px solid var(--border);border-radius:1.2rem;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;}
+.project-visual{background:var(--card);min-height:360px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.project-visual-bg{position:absolute;inset:0;background:radial-gradient(circle at center,rgba(227,25,15,.08),transparent 70%);}
+.orbit{position:absolute;border-radius:50%;border:1px solid rgba(227,25,15,.15);}
+.orbit1{width:260px;height:260px;animation:spin 20s linear infinite;}
+.orbit2{width:170px;height:170px;animation:spin 12s linear infinite reverse;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.project-center{position:relative;z-index:2;text-align:center;}
+.project-center-dot{width:54px;height:54px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;margin:0 auto .9rem;font-family:'Syne',sans-serif;font-size:.68rem;color:var(--white);}
+.project-center span{font-family:'Syne',sans-serif;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);}
+.project-info{padding:2.8rem;display:flex;flex-direction:column;justify-content:center;}
+.project-info h3{font-family:'Syne',sans-serif;font-weight:800;font-size:1.7rem;letter-spacing:-.8px;line-height:1.1;margin-bottom:.8rem;margin-top:.4rem;}
+.project-info p{color:var(--muted);line-height:1.75;font-size:.9rem;margin-bottom:1.5rem;}
+.tags{display:flex;flex-wrap:wrap;gap:.45rem;}
+.tag{font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;background:var(--card);border:1px solid var(--border);color:var(--muted);padding:.28rem .8rem;border-radius:100px;}
+
+/* ── CONTACT ── */
+#contact{border-top:1px solid var(--border);}
+#contact .container{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start;}
+.contact-left h2{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2.4rem,4.5vw,4rem);letter-spacing:-3px;line-height:.95;margin-bottom:1.2rem;}
+.contact-left h2 em{font-style:italic;font-family:'DM Sans',sans-serif;font-weight:300;color:var(--muted);}
+.contact-left p{color:var(--muted);line-height:1.8;font-size:.93rem;margin-bottom:2rem;}
+.contact-btns{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;}
+.contact-items{display:flex;flex-direction:column;gap:1px;background:var(--border);}
+.contact-item{background:var(--bg);padding:1.4rem 1.6rem;display:flex;align-items:center;gap:1.1rem;cursor:pointer;transition:background .25s;}
+.contact-item:hover{background:var(--card);}
+.contact-icon{width:38px;height:38px;border-radius:50%;background:rgba(227,25,15,.09);border:1px solid rgba(227,25,15,.2);display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0;}
+.ci-label{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-bottom:.2rem;}
+.ci-val{font-family:'Syne',sans-serif;font-size:.9rem;font-weight:700;color:var(--white);}
+.ci-sub{font-size:.75rem;color:var(--muted);margin-top:.12rem;}
+
+/* ── FOOTER ── */
+footer{border-top:1px solid var(--border);}
+footer .container{display:flex;justify-content:space-between;align-items:center;padding-top:1.8rem;padding-bottom:1.8rem;flex-wrap:wrap;gap:1rem;}
+.footer-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.3rem;letter-spacing:-1px;}
+.footer-links{display:flex;gap:2rem;}
+.footer-links a{font-size:.78rem;color:var(--muted);text-decoration:none;cursor:pointer;transition:color .2s;}
+.footer-links a:hover{color:var(--white);}
+footer p{font-size:.77rem;color:var(--muted);}
+
+/* ── RESPONSIVE ── */
+@media(max-width:960px){
+  .container{padding:0 2rem;}
+  nav,nav.scrolled{padding-left:2rem;padding-right:2rem;}
+  .hero-strip-inner{padding-left:2rem;padding-right:2rem;}
+  #about .container,#contact .container{grid-template-columns:1fr;gap:3rem;}
+  .services-grid{grid-template-columns:1fr 1fr;}
+  .team-grid{grid-template-columns:1fr 1fr;}
+  .project-card{grid-template-columns:1fr;}
+  .project-visual{min-height:200px;}
+}
+@media(max-width:600px){
+  .container{padding:0 1.4rem;}
+  nav,nav.scrolled{padding-left:1.4rem;padding-right:1.4rem;}
+  .hero-strip-inner{padding-left:1.4rem;padding-right:1.4rem;}
+  .nav-links,.nav-cta{display:none;}
+  .hamburger{display:flex;}
+  .services-grid,.team-grid{grid-template-columns:1fr;}
+  .mv-grid{grid-template-columns:1fr;}
+  section{padding:5rem 0;}
+  .section-header{flex-direction:column;align-items:flex-start;gap:.6rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="logo" onclick="ss('home')">LO<span>O</span>P</div>
+  <ul class="nav-links">
+    <li><a href="#home" onclick="ss('home');return false;">Home</a></li>
+    <li><a href="#about" onclick="ss('about');return false;">About</a></li>
+    <li><a href="#services" onclick="ss('services');return false;">Services</a></li>
+    <li><a href="#team" onclick="ss('team');return false;">Team</a></li>
+    <li><a href="#projects" onclick="ss('projects');return false;">Work</a></li>
+    <li><a href="#contact" onclick="ss('contact');return false;">Contact</a></li>
+  </ul>
+  <button class="nav-cta" onclick="openForm()">Let's Talk</button>
+  <div class="hamburger" id="hbg" onclick="toggleMobile()"><span></span><span></span><span></span></div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a onclick="cm();ss('home')">Home</a>
+  <a onclick="cm();ss('about')">About</a>
+  <a onclick="cm();ss('services')">Services</a>
+  <a onclick="cm();ss('team')">Team</a>
+  <a onclick="cm();ss('projects')">Work</a>
+  <a onclick="cm();ss('contact')">Contact</a>
+</div>
+
+<!-- HERO -->
+<section id="home">
+  <div class="container">
+    <div class="hero-bg-text">LOOP</div>
+    <div class="hero-tag"><span class="dot"></span>IT Solutions & Digital Marketing · Est. 2026</div>
+    <h1 class="hero-h1">We <em>build</em><br>things that<br><span class="red">loop.</span></h1>
+    <div class="hero-oneliner">
+      <div class="hero-oneliner-bar"></div>
+      <p>Creating opportunities, building innovation, and driving success — through technology and marketing.</p>
+    </div>
+    <div class="hero-actions">
+      <button class="btn-primary" onclick="openForm()">Start a Project </button>
+      <button class="btn-ghost" onclick="ss('about')">Our Story </button>
+    </div>
+  </div>
+  <div class="hero-strip">
+    <div class="hero-strip-inner">
+      <div class="hero-strip-stat"><div class="num">3+</div><div class="lbl">Products Live</div></div>
+      <div class="strip-div"></div>
+      <div class="hero-strip-stat"><div class="num">2026</div><div class="lbl">Founded</div></div>
+      <div class="strip-div"></div>
+      <div class="hero-strip-stat"><div class="num">IT + MKT</div><div class="lbl">Two Pillars</div></div>
+      <div class="strip-div"></div>
+      <div class="hero-scroll-btn" onclick="ss('about')">
+        <div class="scroll-line"></div>
+        Scroll
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-inner">
+    <span class="marquee-item">IT Solutions<span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Digital Marketing<span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">E-Commerce<span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Web Development<span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Institute Management<span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Brand Strategy<span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">IT Solutions<span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Digital Marketing<span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">E-Commerce<span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Web Development<span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Institute Management<span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Brand Strategy<span class="marquee-dot">✦</span></span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-left reveal">
+      <div class="label">Who we are</div>
+      <h2>Learn it.<br>Build it.<br>Loop it.</h2>
+      <div class="stats-row">
+        <div class="stat-item"><div class="stat-num">3+</div><div class="stat-lbl">Products Live</div></div>
+        <div class="stat-item"><div class="stat-num">2026</div><div class="stat-lbl">Founded</div></div>
+        <div class="stat-item"><div class="stat-num">∞</div><div class="stat-lbl">Ideas in Motion</div></div>
+      </div>
+      <div class="mv-grid">
+        <div class="mv-card">
+          <div class="mv-card-label">Mission</div>
+          <h3>Learn to Build</h3>
+          <p>Understand deeply. Build boldly. Repeat.</p>
+        </div>
+        <div class="mv-card">
+          <div class="mv-card-label">Vision</div>
+          <h3>South Asia's Most Trusted</h3>
+          <p>The go-to IT & digital marketing community across South Asia.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal" style="transition-delay:.15s;">
+      <div class="label">Our Story</div>
+      <div class="story-block">
+        <p>Many talented individuals struggle to find the right opportunities, no matter where they are. We started our journey with a <strong>simple mission</strong> — to create those opportunities for everyone.</p>
+      </div>
+      <div class="story-quote">
+        <p>"We believe that everyone deserves a platform to showcase their creativity and technical skills."</p>
+      </div>
+      <div class="story-block">
+        <p>Our goal is to <strong>empower individuals to learn, build, and innovate</strong> by developing impactful IT products that can truly benefit society.</p>
+      </div>
+      <div class="story-block">
+        <p>However, building a great product is only part of the journey. <strong>True success comes from how well it is presented and marketed.</strong> Understanding this, we also provide digital marketing services to help products reach the right audience.</p>
+      </div>
+      <div class="story-block">
+        <p>This is the story of LOOP — <strong>creating opportunities, building innovation, and driving success</strong> through both technology and marketing.</p>
+      </div>
+      <button class="btn-ghost" style="margin-top:.8rem;" onclick="ss('services')">What We Do →</button>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2 class="section-title">What we do</h2>
+      <a class="section-link" onclick="ss('contact')">Work with us →</a>
+    </div>
+    <div class="services-grid reveal" style="transition-delay:.1s;">
+      <div class="service-card">
+        <div class="service-num">01</div>
+        <h3>IT Solutions</h3>
+        <p>Custom software, management systems, and tech infrastructure built to scale with your business goals.</p>
+        <span class="service-tag">IMS · ERP · Custom Dev</span>
+      </div>
+      <div class="service-card">
+        <div class="service-num">02</div>
+        <h3>Digital Marketing</h3>
+        <p>Location-targeted campaigns, social strategy, and content that actually converts — not just looks good.</p>
+        <span class="service-tag">SMM · SEO · Ads</span>
+      </div>
+      <div class="service-card">
+        <div class="service-num">03</div>
+        <h3>E-Commerce</h3>
+        <p>Full-stack online stores with seamless UX, built for freelancers, brands, and growing businesses.</p>
+        <span class="service-tag">Shopify · MERN · Custom</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2 class="section-title">The Team</h2>
+      <a class="section-link" onclick="openForm()">Join us →</a>
+    </div>
+    <div class="team-grid">
+      <div class="team-card reveal">
+        <div class="team-avatar">FO</div>
+        <h3>Founder</h3>
+        <div class="team-role">Founder & Visionary</div>
+        <p>The mind behind LOOP. Driven by the belief that technology, when understood deeply, can transform any business — and any community.</p>
+        <span class="team-tag">IT Solutions · Strategy</span>
+      </div>
+      <div class="team-card reveal" style="transition-delay:.1s;">
+        <div class="team-avatar">DE</div>
+        <h3>Dev Team</h3>
+        <div class="team-role">Engineering & Development</div>
+        <p>Full-stack engineers who live by the "learn first, build second" philosophy. Clean code that scales.</p>
+        <span class="team-tag">React · Node · MongoDB</span>
+      </div>
+      <div class="team-card reveal" style="transition-delay:.2s;">
+        <div class="team-avatar">MK</div>
+        <h3>Marketing Team</h3>
+        <div class="team-role">Digital Marketing & Growth</div>
+        <p>Creative strategists who turn brands into communities. We grow your audience with intention and precision.</p>
+        <span class="team-tag">SMM · SEO · Content</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2 class="section-title">Featured Build</h2>
+    </div>
+    <div class="project-card reveal" style="transition-delay:.1s;">
+      <div class="project-visual">
+        <div class="project-visual-bg"></div>
+        <div class="orbit orbit1"></div>
+        <div class="orbit orbit2"></div>
+        <div class="project-center">
+          <div class="project-center-dot">IMS</div>
+          <span>v1.0 — Live</span>
+        </div>
+      </div>
+      <div class="project-info">
+        <div class="label">Case Study</div>
+        <h3>Institute Management System</h3>
+        <p>A complete institutional management platform — student tracking, fees, attendance, and reporting. Built from scratch with the MERN stack and shipped with zero compromises.</p>
+        <div class="tags">
+          <span class="tag">React</span>
+          <span class="tag">Node.js</span>
+          <span class="tag">MongoDB</span>
+          <span class="tag">Express</span>
+          <span class="tag">Full Stack</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-left reveal">
+      <div class="label">Get in touch</div>
+      <h2>Ready to<br><em>loop in?</em></h2>
+      <p>Whether you have an idea or a full brief — let's build something worth shipping. Fill out our form and we'll get back to you within 24 hours.</p>
+      <div class="contact-btns">
+        <button class="btn-primary" onclick="openForm()">Start a Project </button>
+        <button class="btn-ghost" onclick="ss('team')">Meet the Team </button>
+      </div>
+    </div>
+    <div class="reveal" style="transition-delay:.15s;">
+      <div class="label" style="margin-bottom:1.2rem;">Reach us directly</div>
+      <div class="contact-items">
+        <div class="contact-item" onclick="window.open('tel:+94719859130')">
+          <div class="contact-icon">📞</div>
+          <div>
+            <div class="ci-label">Phone</div>
+            <div class="ci-val">+94 71 985 9130</div>
+            <div class="ci-sub">Call us anytime</div>
+          </div>
+        </div>
+        <div class="contact-item" onclick="window.open('https://wa.me/94719859130','_blank')">
+          <div class="contact-icon">💬</div>
+          <div>
+            <div class="ci-label">WhatsApp</div>
+            <div class="ci-val">+94 71 985 9130</div>
+            <div class="ci-sub">Chat with us on WhatsApp</div>
+          </div>
+        </div>
+        <div class="contact-item" onclick="window.open('mailto:ceo.loopjaffna@gmail.com')">
+          <div class="contact-icon">✉️</div>
+          <div>
+            <div class="ci-label">Email</div>
+            <div class="ci-val">ceo.loopjaffna@gmail.com</div>
+            <div class="ci-sub">We reply within 24 hours</div>
+          </div>
+        </div>
+        <div class="contact-item" onclick="openForm()">
+          <div class="contact-icon">📋</div>
+          <div>
+            <div class="ci-label">Project Form</div>
+            <div class="ci-val">Fill out our brief</div>
+            <div class="ci-sub">Tell us about your project</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-logo">LO<span style="color:var(--red)">O</span>P</div>
+    <div class="footer-links">
+      <a onclick="ss('about')">About</a>
+      <a onclick="ss('services')">Services</a>
+      <a onclick="ss('team')">Team</a>
+      <a onclick="ss('contact')">Contact</a>
+    </div>
+    <p>© 2026 LOOP · Colombo, Sri Lanka 🇱🇰</p>
+  </div>
+</footer>
+
+<script>
+function ss(id){const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth'});}
+function openForm(){window.open('https://docs.google.com/forms/d/e/1FAIpQLSf_if3fI6K7ZLAfh1xv-RLGQaz7g2GVisEq3SgeGdAGiCbEMg/viewform?usp=header','_blank');}
+window.addEventListener('scroll',()=>{
+  document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>50);
+  const secs=['home','about','services','team','projects','contact'];
+  const links=document.querySelectorAll('.nav-links a');
+  let cur='home';
+  secs.forEach(id=>{const el=document.getElementById(id);if(el&&window.scrollY>=el.offsetTop-140)cur=id;});
+  links.forEach(l=>{l.classList.remove('active');if(l.getAttribute('href')==='#'+cur)l.classList.add('active');});
+});
+function toggleMobile(){
+  document.getElementById('hbg').classList.toggle('open');
+  document.getElementById('mobileMenu').classList.toggle('open');
+  document.body.style.overflow=document.getElementById('mobileMenu').classList.contains('open')?'hidden':'';
+}
+function cm(){document.getElementById('hbg').classList.remove('open');document.getElementById('mobileMenu').classList.remove('open');document.body.style.overflow='';}
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible');});},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(r=>obs.observe(r));
+document.addEventListener('keydown',e=>{if(e.key==='Escape')cm();});
+</script>
+</body>
+</html>
